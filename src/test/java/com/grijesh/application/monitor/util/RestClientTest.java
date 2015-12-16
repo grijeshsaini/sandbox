@@ -24,7 +24,7 @@ import static org.springframework.test.web.client.match.MockRestRequestMatchers.
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
 /**
- * Created by grijesh on 17/12/15.
+ * Created by grijesh.
  */
 public class RestClientTest {
 
@@ -59,7 +59,6 @@ public class RestClientTest {
         URL url = RestClientTest.class.getResource("/expected/props.json");
         Path path = Paths.get(url.toURI());
         byte[] ba = Files.readAllBytes(path);
-        String text = new String(ba, StandardCharsets.UTF_8);
-        return text;
+        return new String(ba, StandardCharsets.UTF_8);
     }
 }

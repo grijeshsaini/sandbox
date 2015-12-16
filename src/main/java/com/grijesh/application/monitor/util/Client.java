@@ -5,6 +5,6 @@ import com.grijesh.application.monitor.model.EnvironmentProperties;
 /**
  * Created by grijesh.
  */
-public interface Client {
+interface Client {
     EnvironmentProperties getEnvironmentProperties(String applicationName);
 }
