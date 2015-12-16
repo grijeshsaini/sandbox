@@ -8,7 +8,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * This class is a generic client
+ *This class will call the predefined url and will populate the env properties
+ * in object
  *
  * Created by grijesh.
  */
