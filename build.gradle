@@ -1,0 +1,36 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+jar {
+    baseName = 'application-monitor'
+    version =  '1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.3.0.RELEASE")
+    }
+}
+
+dependencies {
+
+    //internal modules
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile('com.google.guava:guava:18.0')
+    testCompile(group:'org.springframework', name: 'spring-test' ,version: '4.2.3.RELEASE')
+    testCompile("junit:junit")
+    testCompile("com.natpryce:make-it-easy:4.0.0")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile('org.hamcrest:hamcrest-all:1.3')
+}
