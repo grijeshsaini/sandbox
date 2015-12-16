@@ -10,6 +10,12 @@ import org.springframework.core.io.ResourceLoader;
 import java.io.*;
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.BDDMockito.willReturn;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.MockitoAnnotations.initMocks;
+
 /**
  * Created by grijesh.
  */
@@ -23,15 +29,13 @@ public class UrlGeneratorTest {
     @Mock
     private ClassPathResource classPathResource;
 
-    @Mock
-    private BufferedReader bufferedReader;
-
-    @Mock
-    private FileInputStream inputStream;
+    private InputStream inputStream;
 
     @Before
     public void setup() {
-        MockitoAnnotations.initMocks(this);
+        initMocks(this);
+        byte[] data = "app1".getBytes();
+        inputStream = new ByteArrayInputStream(data);
         urlGenerator = new UrlGenerator();
         urlGenerator.setResourceLoader(resourceLoader);
     }
@@ -40,16 +44,16 @@ public class UrlGeneratorTest {
     public void shouldReturnTheListOfApplicationNames() throws IOException {
         //Given
         //I have urlGenerator instance
-        BDDMockito.willReturn(classPathResource).given(resourceLoader).getResource(org.mockito.Matchers.anyString());
-        BDDMockito.willReturn(inputStream).given(classPathResource).getInputStream();
-        Mockito.when(new BufferedReader(new InputStreamReader(Matchers.any()))).thenReturn(bufferedReader);
-        Mockito.when(bufferedReader.readLine()).thenReturn("first line").thenReturn("second line");
+        willReturn(classPathResource).given(resourceLoader).getResource(anyString());
+        willReturn(inputStream).given(classPathResource).getInputStream();
 
         //When
         List<String> applications = urlGenerator.getApplicationNames();
 
         //Then
-        Assert.assertTrue("Application should be greater than 0", (0 < applications.size()));
+        assertTrue("Application should be greater than 0", (0 < applications.size()));
+        assertEquals("First app should be","app1",applications.get(0));
+
     }
 
 }
