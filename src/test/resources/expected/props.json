@@ -1,0 +1,19 @@
+{
+  "TEST" :{
+    "expectedName" : "test",
+    "url" : "test123"
+  },
+  "UAT" :{
+    "expectedName" : "uat",
+    "url" : "uat123"
+  },
+  "DEM0" :{
+    "expectedName" : "demo",
+    "url" : "demo123"
+  },
+  "PROD" :{
+    "expectedName" : "prod",
+    "url" : "prod123"
+  }
+
+}
