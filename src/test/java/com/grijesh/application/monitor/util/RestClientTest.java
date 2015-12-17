@@ -1,6 +1,7 @@
 package com.grijesh.application.monitor.util;
 
 import com.grijesh.application.monitor.model.EnvironmentProperties;
+import com.grijesh.application.monitor.service.client.RestClient;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

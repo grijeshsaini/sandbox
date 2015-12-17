@@ -1,6 +1,5 @@
-package com.grijesh.application.monitor.urlgenerator;
+package com.grijesh.application.monitor.service.urlgenerator;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.*;

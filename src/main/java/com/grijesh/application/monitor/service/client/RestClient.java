@@ -1,4 +1,4 @@
-package com.grijesh.application.monitor.util;
+package com.grijesh.application.monitor.service.client;
 
 import com.grijesh.application.monitor.model.EnvironmentProperties;
 import org.slf4j.Logger;

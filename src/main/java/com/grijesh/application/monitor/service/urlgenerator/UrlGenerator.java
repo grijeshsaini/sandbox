@@ -1,4 +1,4 @@
-package com.grijesh.application.monitor.urlgenerator;
+package com.grijesh.application.monitor.service.urlgenerator;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
