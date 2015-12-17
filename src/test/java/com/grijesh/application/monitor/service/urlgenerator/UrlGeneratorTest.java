@@ -8,6 +8,7 @@ import org.springframework.core.io.ResourceLoader;
 
 import java.io.*;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -47,11 +48,11 @@ public class UrlGeneratorTest {
         willReturn(inputStream).given(classPathResource).getInputStream();
 
         //When
-        List<String> applications = urlGenerator.getApplicationNames();
+        Set<String> applications = urlGenerator.getApplicationNames();
 
         //Then
         assertTrue("Application should be greater than 0", (0 < applications.size()));
-        assertEquals("First app should be","app1",applications.get(0));
+        assertEquals("First app should be","app1",applications.iterator().next());
 
     }
 

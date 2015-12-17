@@ -9,8 +9,8 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * This class will read the application names from
@@ -29,9 +29,9 @@ public class UrlGenerator {
     @Autowired
     private ResourceLoader resourceLoader;
 
-    public List<String> getApplicationNames() {
+    public Set<String> getApplicationNames() {
         logger.info("method=getApplicationNames");
-        List<String> applications = new ArrayList<>();
+        Set<String> applications = new HashSet<>();
         try (BufferedReader br = new BufferedReader(new InputStreamReader(getFile()))) {
             String name;
             while ((name = br.readLine()) != null) {
