@@ -6,8 +6,11 @@ import com.grijesh.application.monitor.service.urlgenerator.UrlGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 
 /**
@@ -34,7 +37,7 @@ public class FileGeneratorImpl implements FileGenerator {
 
         for (String application : applications) {
             EnvironmentProperties environmentProperties = restClient.getEnvironmentProperties(application);
-            populateEnviornmentMaps(application, environmentProperties);
+            populateEnvironmentMaps(application, environmentProperties);
         }
 
         generateFile();
@@ -42,10 +45,25 @@ public class FileGeneratorImpl implements FileGenerator {
     }
 
     private void generateFile() {
-
+        mapToFile(testProperties,"Test.properties");
+        mapToFile(uatProperties,"Uat.properties");
+        mapToFile(demoProperties,"Demo.properties");
+        mapToFile(prodProperties,"Prod.properties");
     }
 
-    private void populateEnviornmentMaps(String application, EnvironmentProperties environmentProperties) {
+    private void mapToFile(Map<String,String> map,String fileName){
+        Properties properties = new Properties();
+        for (Map.Entry<String,String> entry : map.entrySet()) {
+            properties.put(entry.getKey(), entry.getValue());
+        }
+        try(FileOutputStream fileOutputStream = new FileOutputStream("src/main/resources/envfiles/"+fileName)) {
+            properties.store(fileOutputStream, null);
+        }catch (IOException e){
+            throw new RuntimeException("Exception occurred",e);
+        }
+    }
+
+    private void populateEnvironmentMaps(String application, EnvironmentProperties environmentProperties) {
         testProperties.put(application, environmentProperties.getTest().getUrl());
         uatProperties.put(application, environmentProperties.getUat().getUrl());
         demoProperties.put(application, environmentProperties.getDemo().getUrl());
