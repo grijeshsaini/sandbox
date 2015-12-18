@@ -37,6 +37,12 @@ public class FileGeneratorImpl implements FileGenerator {
             populateEnviornmentMaps(application, environmentProperties);
         }
 
+        generateFile();
+
+    }
+
+    private void generateFile() {
+
     }
 
     private void populateEnviornmentMaps(String application, EnvironmentProperties environmentProperties) {
