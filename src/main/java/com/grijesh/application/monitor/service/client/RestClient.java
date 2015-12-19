@@ -3,6 +3,7 @@ package com.grijesh.application.monitor.service.client;
 import com.grijesh.application.monitor.model.EnvironmentProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -21,6 +22,9 @@ public class RestClient implements Client {
 
     @Value("${monitor.version.url}")
     private String url;
+
+    @Autowired
+    private RestTemplate restTemplate;
 
     @Override
     public EnvironmentProperties getEnvironmentProperties(String applicationName) {
@@ -44,10 +48,14 @@ public class RestClient implements Client {
     }
 
     public RestTemplate getRestTemplate() {
-        return new RestTemplate();
+        return restTemplate;
     }
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public void setRestTemplate(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
     }
 }

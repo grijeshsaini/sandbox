@@ -30,17 +30,18 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
 public class RestClientTest {
 
     private RestClient restClient;
+    private RestTemplate restTemplate;
 
     @Before
     public void setup() {
         restClient = Mockito.spy(new RestClient());
+        restTemplate = new RestTemplate();
     }
 
     @Test
     public void shouldGetEnvProps() throws IOException, URISyntaxException {
         //Given
         String url = "http://localhost:8080/%s/version";
-        RestTemplate restTemplate = restClient.getRestTemplate();
         MockRestServiceServer mockServer = MockRestServiceServer.createServer(restTemplate);
         String body = loadJsonFile();
         mockServer.expect(requestTo("http://localhost:8080/test/version")).andExpect(method(HttpMethod.GET))
@@ -59,7 +60,6 @@ public class RestClientTest {
     @Test
     public void shouldGetVersion() {
         //Given
-        RestTemplate restTemplate = restClient.getRestTemplate();
         MockRestServiceServer mockServer = MockRestServiceServer.createServer(restTemplate);
         String body = "1.2.0.SNAPSHOT";
         String expectedUri = "http://localhost:8080/test/version";
