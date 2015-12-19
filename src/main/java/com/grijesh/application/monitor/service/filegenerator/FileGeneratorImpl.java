@@ -1,8 +1,8 @@
 package com.grijesh.application.monitor.service.filegenerator;
 
 import com.grijesh.application.monitor.model.EnvironmentProperties;
+import com.grijesh.application.monitor.service.appnameloader.AppNamesLoader;
 import com.grijesh.application.monitor.service.client.Client;
-import com.grijesh.application.monitor.service.urlgenerator.UrlGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +24,7 @@ public class FileGeneratorImpl implements FileGenerator {
     private Client restClient;
 
     @Autowired
-    private UrlGenerator urlGenerator;
+    private AppNamesLoader appNamesLoader;
 
     private Map<String, String> testProperties = new HashMap<>();
     private Map<String, String> uatProperties = new HashMap<>();
@@ -45,10 +45,10 @@ public class FileGeneratorImpl implements FileGenerator {
     }
 
     private void generateFile() {
-        mapToFile(testProperties, "Test.properties");
-        mapToFile(uatProperties, "Uat.properties");
-        mapToFile(demoProperties, "Demo.properties");
-        mapToFile(prodProperties, "Prod.properties");
+        mapToFile(testProperties, "test.properties");
+        mapToFile(uatProperties, "uat.properties");
+        mapToFile(demoProperties, "demo.properties");
+        mapToFile(prodProperties, "prod.properties");
     }
 
     private void mapToFile(Map<String, String> map, String fileName) {
@@ -71,6 +71,6 @@ public class FileGeneratorImpl implements FileGenerator {
     }
 
     private Set<String> getApplicationNames() {
-        return urlGenerator.getApplicationNames();
+        return appNamesLoader.getApplicationNames();
     }
 }

@@ -1,5 +1,6 @@
 package com.grijesh.application.monitor.service.urlgenerator;
 
+import com.grijesh.application.monitor.service.appnameloader.AppNamesLoader;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -20,9 +21,9 @@ import static org.mockito.MockitoAnnotations.initMocks;
 /**
  * Created by grijesh.
  */
-public class UrlGeneratorTest {
+public class AppNamesLoaderTest {
 
-    private UrlGenerator urlGenerator;
+    private AppNamesLoader appNamesLoader;
 
     @Mock
     private ResourceLoader resourceLoader;
@@ -37,19 +38,19 @@ public class UrlGeneratorTest {
         initMocks(this);
         byte[] data = "app1".getBytes();
         inputStream = new ByteArrayInputStream(data);
-        urlGenerator = new UrlGenerator();
-        urlGenerator.setResourceLoader(resourceLoader);
+        appNamesLoader = new AppNamesLoader();
+        appNamesLoader.setResourceLoader(resourceLoader);
     }
 
     @Test
     public void shouldReturnTheListOfApplicationNames() throws IOException {
         //Given
-        //I have urlGenerator instance
+        //I have appNamesLoader instance
         willReturn(classPathResource).given(resourceLoader).getResource(anyString());
         willReturn(inputStream).given(classPathResource).getInputStream();
 
         //When
-        Set<String> applications = urlGenerator.getApplicationNames();
+        Set<String> applications = appNamesLoader.getApplicationNames();
 
         //Then
         assertTrue("Application should be greater than 0", (0 < applications.size()));

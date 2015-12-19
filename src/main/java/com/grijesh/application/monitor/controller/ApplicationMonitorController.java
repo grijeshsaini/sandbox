@@ -4,7 +4,9 @@ import com.grijesh.application.monitor.model.Monitor;
 import com.grijesh.application.monitor.service.monitor.ApplicationMonitor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Map;
@@ -19,33 +21,49 @@ public class ApplicationMonitorController {
     @Autowired
     private ApplicationMonitor applicationMonitor;
 
-    @RequestMapping("/test")
-    public String monitorTest(Map<String, Object> model) {
-        model.put("envName", "Test");
-        model.put("testApps", getMonitor("Test"));
+    @RequestMapping("/{envName}")
+    public String monitorTest(@PathVariable("envName") String envName, Map<String, Object> model) {
+        List<Monitor> appList = getMonitor(envName);
+        long downApps = countDownStatus(appList);
+        model.put("envName", envName.toUpperCase());
+        model.put("apps", appList);
+        model.put("down", downApps);
+        model.put("up", appList.size() - downApps);
         return "monitor";
     }
 
-    @RequestMapping("/prod")
+    /*@RequestMapping("/prod")
     public String monitorProd(Map<String, Object> model) {
-        model.put("envName", "Prod");
-        model.put("testApps", getMonitor("Prod"));
+        List<Monitor> appList = getMonitor("Test");
+        long downApps = countDownStatus(appList);
+        model.put("envName", "Test");
+        model.put("apps", appList);
+        model.put("down",downApps);
+        model.put("up",appList.size()-downApps);
         return "monitor";
     }
 
     @RequestMapping("/uat")
     public String monitorUat(Map<String, Object> model) {
-        model.put("envName", "Uat");
-        model.put("testApps", getMonitor("Uat"));
+        List<Monitor> appList = getMonitor("Test");
+        long downApps = countDownStatus(appList);
+        model.put("envName", "Test");
+        model.put("apps", appList);
+        model.put("down",downApps);
+        model.put("up",appList.size()-downApps);
         return "monitor";
     }
 
     @RequestMapping("/demo")
     public String monitorDemp(Map<String, Object> model) {
-        model.put("envName", "Demo");
-        model.put("testApps", getMonitor("Demo"));
+        List<Monitor> appList = getMonitor("Test");
+        long downApps = countDownStatus(appList);
+        model.put("envName", "Test");
+        model.put("apps", appList);
+        model.put("down",downApps);
+        model.put("up",appList.size()-downApps);
         return "monitor";
-    }
+    }*/
     /*@RequestMapping("/test")
     public ResponseEntity<Object> monitorTest() {
         return getListOfMonitor("Test");
@@ -66,6 +84,10 @@ public class ApplicationMonitorController {
 
     private List<Monitor> getMonitor(String envName) {
         return applicationMonitor.monitor(envName);
+    }
+
+    private long countDownStatus(List<Monitor> appList) {
+        return appList.stream().filter(app -> app.getStatus().equals("DOWN")).count();
     }
 
 }

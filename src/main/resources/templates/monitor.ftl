@@ -52,7 +52,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                           Applications
+                           Applications (up - ${up} , down - ${down})
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -65,7 +65,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <#list testApps as app>
+                                        <#list apps as app>
                                             <tr
                                                 <#if app.status == 'DOWN'>
                                                       class='danger'

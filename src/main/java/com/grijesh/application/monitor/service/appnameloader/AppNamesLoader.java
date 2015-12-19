@@ -1,4 +1,4 @@
-package com.grijesh.application.monitor.service.urlgenerator;
+package com.grijesh.application.monitor.service.appnameloader;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,10 +22,10 @@ import java.util.Set;
  * <p>
  * Created by grijesh.
  */
-@Component
-public class UrlGenerator {
+@Service
+public class AppNamesLoader {
 
-    private static final Logger logger = LoggerFactory.getLogger(UrlGenerator.class);
+    private static final Logger logger = LoggerFactory.getLogger(AppNamesLoader.class);
 
     private final static String APP_NAMES_FILES = "app-names.properties";
 
