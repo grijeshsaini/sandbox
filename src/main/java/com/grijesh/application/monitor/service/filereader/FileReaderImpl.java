@@ -1,5 +1,7 @@
 package com.grijesh.application.monitor.service.filereader;
 
+import org.springframework.stereotype.Service;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -9,6 +11,7 @@ import java.util.Properties;
 /**
  * Created by grijesh.
  */
+@Service
 public class FileReaderImpl implements FileReader {
 
     @Override

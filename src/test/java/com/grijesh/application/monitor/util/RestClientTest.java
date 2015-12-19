@@ -31,6 +31,7 @@ public class RestClientTest {
 
     private RestClient restClient;
 
+
     @Before
     public void setup() {
         restClient = Mockito.spy(new RestClient());
@@ -53,6 +54,25 @@ public class RestClientTest {
 
         //Then
         Assert.assertEquals("Test expectedName should be","test",environmentProperties.getTest().getExpectedName());
+
+    }
+
+    @Test
+    public void shouldGetVersion(){
+        //Given
+        RestTemplate restTemplate = restClient.getRestTemplate();
+        MockRestServiceServer mockServer = MockRestServiceServer.createServer(restTemplate);
+        String body = "1.2.0.SNAPSHOT";
+        String expectedUri = "http://localhost:8080/test/version";
+        mockServer.expect(requestTo(expectedUri)).andExpect(method(HttpMethod.GET))
+                .andRespond(withSuccess(body, MediaType.TEXT_PLAIN));
+        willReturn(restTemplate).given(restClient).getRestTemplate();
+
+        //When
+        String version = restClient.getVersionFrom(expectedUri);
+
+        //Then
+        Assert.assertEquals("Version should be",body,version);
 
     }
 

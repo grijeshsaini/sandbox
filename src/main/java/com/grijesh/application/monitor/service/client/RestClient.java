@@ -31,6 +31,12 @@ public class RestClient implements Client{
         return restTemplate.getForObject(url,EnvironmentProperties.class);
     }
 
+    @Override
+    public String getVersionFrom(String applicationUrl) {
+        RestTemplate restTemplate = getRestTemplate();
+        return restTemplate.getForObject(applicationUrl,String.class);
+    }
+
     public RestTemplate getRestTemplate(){
         return new RestTemplate();
     }

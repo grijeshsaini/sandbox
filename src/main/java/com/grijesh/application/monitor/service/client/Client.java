@@ -7,4 +7,5 @@ import com.grijesh.application.monitor.model.EnvironmentProperties;
  */
 public interface Client {
     EnvironmentProperties getEnvironmentProperties(String applicationName);
+    String getVersionFrom(String applicationUrl);
 }
