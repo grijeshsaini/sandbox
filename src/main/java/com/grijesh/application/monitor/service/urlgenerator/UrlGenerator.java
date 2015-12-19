@@ -51,5 +51,7 @@ public class UrlGenerator {
         return resource.getInputStream();
     }
 
-
+    public void setResourceLoader(ResourceLoader resourceLoader) {
+        this.resourceLoader = resourceLoader;
+    }
 }
