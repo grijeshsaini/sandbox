@@ -1,19 +1,18 @@
 {
-  "TEST" :{
-    "expectedName" : "test",
-    "url" : "test123"
+  "TEST": {
+    "expectedName": "test",
+    "url": "test123"
   },
-  "UAT" :{
-    "expectedName" : "uat",
-    "url" : "uat123"
+  "UAT": {
+    "expectedName": "uat",
+    "url": "uat123"
   },
-  "DEMO" :{
-    "expectedName" : "demo",
-    "url" : "demo123"
+  "DEMO": {
+    "expectedName": "demo",
+    "url": "demo123"
   },
-  "PROD" :{
-    "expectedName" : "prod",
-    "url" : "prod123"
+  "PROD": {
+    "expectedName": "prod",
+    "url": "prod123"
   }
-
 }

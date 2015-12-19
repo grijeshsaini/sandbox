@@ -2,12 +2,13 @@ package com.grijesh.application.monitor.service.urlgenerator;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.*;
+import org.mockito.Mock;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.ResourceLoader;
 
-import java.io.*;
-import java.util.List;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
@@ -52,7 +53,7 @@ public class UrlGeneratorTest {
 
         //Then
         assertTrue("Application should be greater than 0", (0 < applications.size()));
-        assertEquals("First app should be","app1",applications.iterator().next());
+        assertEquals("First app should be", "app1", applications.iterator().next());
 
     }
 

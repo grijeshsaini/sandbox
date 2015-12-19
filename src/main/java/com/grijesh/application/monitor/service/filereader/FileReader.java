@@ -6,5 +6,5 @@ import java.util.Map;
  * Created by grijesh.
  */
 public interface FileReader {
-    Map<String,String> getPropertiesOf(String envName);
+    Map<String, String> getPropertiesOf(String envName);
 }

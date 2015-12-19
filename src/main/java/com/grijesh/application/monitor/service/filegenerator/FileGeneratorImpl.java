@@ -45,21 +45,21 @@ public class FileGeneratorImpl implements FileGenerator {
     }
 
     private void generateFile() {
-        mapToFile(testProperties,"Test.properties");
-        mapToFile(uatProperties,"Uat.properties");
-        mapToFile(demoProperties,"Demo.properties");
-        mapToFile(prodProperties,"Prod.properties");
+        mapToFile(testProperties, "Test.properties");
+        mapToFile(uatProperties, "Uat.properties");
+        mapToFile(demoProperties, "Demo.properties");
+        mapToFile(prodProperties, "Prod.properties");
     }
 
-    private void mapToFile(Map<String,String> map,String fileName){
+    private void mapToFile(Map<String, String> map, String fileName) {
         Properties properties = new Properties();
-        for (Map.Entry<String,String> entry : map.entrySet()) {
+        for (Map.Entry<String, String> entry : map.entrySet()) {
             properties.put(entry.getKey(), entry.getValue());
         }
-        try(FileOutputStream fileOutputStream = new FileOutputStream("src/main/resources/envfiles/"+fileName)) {
+        try (FileOutputStream fileOutputStream = new FileOutputStream("src/main/resources/envfiles/" + fileName)) {
             properties.store(fileOutputStream, null);
-        }catch (IOException e){
-            throw new RuntimeException("Exception occurred",e);
+        } catch (IOException e) {
+            throw new RuntimeException("Exception occurred", e);
         }
     }
 
