@@ -37,7 +37,7 @@ public class RestClient implements Client {
 
     @Override
     public String getVersionFrom(String applicationUrl) {
-        String version = null;
+        String version = "DOWN";
         RestTemplate restTemplate = getRestTemplate();
         try {
             version = restTemplate.getForObject(applicationUrl, String.class);
