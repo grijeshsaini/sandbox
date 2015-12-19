@@ -8,14 +8,14 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 /**
- *This class will call the predefined url and will populate the env properties
+ * This class will call the predefined url and will populate the env properties
  * in object
- *
+ * <p>
  * Created by grijesh.
  */
 
 @Component
-public class RestClient implements Client{
+public class RestClient implements Client {
 
     private static final Logger logger = LoggerFactory.getLogger(RestClient.class);
 
@@ -24,20 +24,26 @@ public class RestClient implements Client{
 
     @Override
     public EnvironmentProperties getEnvironmentProperties(String applicationName) {
-        logger.info("method=getEnvironmentProperties application name {}",applicationName);
+        logger.info("method=getEnvironmentProperties application name {}", applicationName);
         RestTemplate restTemplate = getRestTemplate();
-        url = String.format(url,applicationName);
-        logger.info("URL:{}",url);
-        return restTemplate.getForObject(url,EnvironmentProperties.class);
+        url = String.format(url, applicationName);
+        logger.info("URL:{}", url);
+        return restTemplate.getForObject(url, EnvironmentProperties.class);
     }
 
     @Override
     public String getVersionFrom(String applicationUrl) {
+        String version = null;
         RestTemplate restTemplate = getRestTemplate();
-        return restTemplate.getForObject(applicationUrl,String.class);
+        try {
+            version = restTemplate.getForObject(applicationUrl, String.class);
+        } catch (Exception e) {
+            logger.error("Application is down", e);
+        }
+        return version;
     }
 
-    public RestTemplate getRestTemplate(){
+    public RestTemplate getRestTemplate() {
         return new RestTemplate();
     }
 

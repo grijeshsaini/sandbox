@@ -31,7 +31,6 @@ public class RestClientTest {
 
     private RestClient restClient;
 
-
     @Before
     public void setup() {
         restClient = Mockito.spy(new RestClient());
@@ -40,7 +39,7 @@ public class RestClientTest {
     @Test
     public void shouldGetEnvProps() throws IOException, URISyntaxException {
         //Given
-        String url ="http://localhost:8080/%s/version";
+        String url = "http://localhost:8080/%s/version";
         RestTemplate restTemplate = restClient.getRestTemplate();
         MockRestServiceServer mockServer = MockRestServiceServer.createServer(restTemplate);
         String body = loadJsonFile();
@@ -53,12 +52,12 @@ public class RestClientTest {
         EnvironmentProperties environmentProperties = restClient.getEnvironmentProperties("test");
 
         //Then
-        Assert.assertEquals("Test expectedName should be","test",environmentProperties.getTest().getExpectedName());
+        Assert.assertEquals("Test expectedName should be", "test", environmentProperties.getTest().getExpectedName());
 
     }
 
     @Test
-    public void shouldGetVersion(){
+    public void shouldGetVersion() {
         //Given
         RestTemplate restTemplate = restClient.getRestTemplate();
         MockRestServiceServer mockServer = MockRestServiceServer.createServer(restTemplate);
@@ -72,7 +71,7 @@ public class RestClientTest {
         String version = restClient.getVersionFrom(expectedUri);
 
         //Then
-        Assert.assertEquals("Version should be",body,version);
+        Assert.assertEquals("Version should be", body, version);
 
     }
 
