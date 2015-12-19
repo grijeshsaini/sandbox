@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Map;
@@ -23,7 +22,22 @@ public class ApplicationMonitorController {
 
     @RequestMapping("/{envName}")
     public String monitorTest(@PathVariable("envName") String envName, Map<String, Object> model) {
-        List<Monitor> appList = getMonitor(envName);
+        return monitorEnv(envName, model);
+    }
+
+    /**
+     * Hack to support environment as Test
+     *
+     * @param model
+     * @return
+     */
+    @RequestMapping("/")
+    public String monitor(Map<String, Object> model) {
+        return monitorEnv("test", model);
+    }
+
+    private String monitorEnv(@PathVariable("envName") String envName, Map<String, Object> model) {
+        List<Monitor> appList = getMonitor(envName.toLowerCase());
         long downApps = countDownStatus(appList);
         model.put("envName", envName.toUpperCase());
         model.put("apps", appList);

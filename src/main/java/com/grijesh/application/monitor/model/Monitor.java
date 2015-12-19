@@ -1,11 +1,9 @@
 package com.grijesh.application.monitor.model;
 
-import java.util.Comparator;
-
 /**
  * Created by grijesh.
  */
-public class Monitor implements Comparable<Monitor>{
+public class Monitor implements Comparable<Monitor> {
 
     private String appName;
 
@@ -39,9 +37,9 @@ public class Monitor implements Comparable<Monitor>{
 
     @Override
     public int compareTo(Monitor o) {
-        if(this.getStatus().equals("DOWN"))
+        if (this.getStatus().equals("DOWN"))
             return -1;
-        else if(!this.getAppName().equals("DOWN"))
+        else if (!this.getAppName().equals("DOWN"))
             return 1;
         else
             return 0;

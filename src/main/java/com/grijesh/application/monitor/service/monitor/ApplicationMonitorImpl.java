@@ -27,7 +27,7 @@ public class ApplicationMonitorImpl implements ApplicationMonitor {
     public List<Monitor> monitor(String envName) {
         Map<String, String> map = getEnvDetails(envName);
         return map.entrySet().stream()
-                .map((e) -> setStatus(e.getKey(),restClient.getVersionFrom(e.getValue())))
+                .map((e) -> setStatus(e.getKey(), restClient.getVersionFrom(e.getValue())))
                 .sorted()
                 .collect(Collectors.toList());
     }
