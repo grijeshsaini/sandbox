@@ -1,3 +1,9 @@
 monitor:
   version:
     url: "http://localhost:8080/props.json"
+
+logging:
+  level:
+    org:
+      springframework:
+        web : INFO

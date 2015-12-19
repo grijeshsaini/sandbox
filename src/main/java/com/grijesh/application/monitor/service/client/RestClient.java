@@ -42,7 +42,7 @@ public class RestClient implements Client {
         try {
             version = restTemplate.getForObject(applicationUrl, String.class);
         } catch (Exception e) {
-            logger.error("Application is down", e);
+            logger.error("Application is down", e.getMessage());
         }
         return version;
     }

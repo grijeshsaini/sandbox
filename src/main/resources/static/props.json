@@ -1,7 +1,7 @@
 {
   "TEST": {
     "expectedName": "test",
-    "url": "test123"
+    "url": "http://localhost:8080/version.txt"
   },
   "UAT": {
     "expectedName": "uat",

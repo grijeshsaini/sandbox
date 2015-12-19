@@ -27,13 +27,15 @@ public class ApplicationMonitorImpl implements ApplicationMonitor {
     public List<Monitor> monitor(String envName) {
         Map<String, String> map = getEnvDetails(envName);
         return map.entrySet().stream()
-                .map((e) -> setStatus(restClient.getVersionFrom(e.getValue())))
+                .map((e) -> setStatus(e.getKey(),restClient.getVersionFrom(e.getValue())))
+                .sorted()
                 .collect(Collectors.toList());
     }
 
-    public Monitor setStatus(String status) {
+    public Monitor setStatus(String key, String status) {
         Monitor monitor = new Monitor();
         monitor.setStatus(status);
+        monitor.setAppName(key);
         return monitor;
     }
 
