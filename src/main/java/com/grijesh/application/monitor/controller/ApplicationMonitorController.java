@@ -26,7 +26,7 @@ public class ApplicationMonitorController {
     }
 
     /**
-     * Hack to support environment as Test
+     * Hack to make default environment as Test
      *
      * @param model
      * @return
