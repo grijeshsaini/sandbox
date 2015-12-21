@@ -54,7 +54,8 @@ public class FileGeneratorImpl implements FileGenerator {
     private void mapToFile(Map<String, String> map, String fileName) {
         Properties properties = new Properties();
         for (Map.Entry<String, String> entry : map.entrySet()) {
-            properties.put(entry.getKey(), entry.getValue());
+            if (entry.getValue() != null)
+                properties.put(entry.getKey(), entry.getValue());
         }
         try (FileOutputStream fileOutputStream = new FileOutputStream("src/main/resources/envfiles/" + fileName)) {
             properties.store(fileOutputStream, null);
