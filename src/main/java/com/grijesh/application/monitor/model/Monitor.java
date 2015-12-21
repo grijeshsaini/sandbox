@@ -37,11 +37,6 @@ public class Monitor implements Comparable<Monitor> {
 
     @Override
     public int compareTo(Monitor o) {
-        if (this.getStatus().equals("DOWN"))
-            return -1;
-        else if (!this.getAppName().equals("DOWN"))
-            return 1;
-        else
-            return 0;
+        return o.getStatus().compareTo(this.getStatus());
     }
 }
