@@ -26,6 +26,7 @@ public class ApplicationMonitorImpl implements ApplicationMonitor {
     @Override
     public List<Monitor> monitor(String envName) {
         Map<String, String> map = getEnvDetails(envName);
+        //todo change the parallel stream to executor
         return map.entrySet().parallelStream()
                 .map((e) -> setStatus(e.getKey(), restClient.getVersionFrom(e.getValue())))
                 .sorted()
